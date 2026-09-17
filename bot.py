@@ -22,7 +22,7 @@ __
 TARGET_CHAT_ID = -1002670424462
 
 async def main():
-    TOKEN = os.environ.get("8584401703:AAFA81sZ19Nqhuv2fF8hdPkqvCaFW_4hEUs")
+    TOKEN = os.environ.get("BOT_TOKEN")
     if not TOKEN:
         logging.error("توکن پیدا نشد!")
         return
