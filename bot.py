@@ -1,8 +1,9 @@
 import asyncio
 import logging
 import os
-from telegram.ext import Application
+from telegram import Bot
 
+# تنظیمات لاگ
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     level=logging.INFO
@@ -21,26 +22,26 @@ __
 
 TARGET_CHAT_ID = -1002670424462
 
-async def main():
+async def send_promo_message():
+    # خواندن توکن از Secrets گیت‌هاب
     TOKEN = os.environ.get("BOT_TOKEN")
+    
     if not TOKEN:
-        logging.error("توکن پیدا نشد!")
+        logging.error("خطا: BOT_TOKEN یافت نشد!")
         return
 
-    app = Application.builder().token(TOKEN).build()
-    await app.initialize()
+    bot = Bot(token=TOKEN)
     
     try:
-        await app.bot.send_message(
+        logging.info("در حال ارسال پیام...")
+        await bot.send_message(
             chat_id=TARGET_CHAT_ID,
             text=MESSAGE,
             disable_web_page_preview=True
         )
-        logging.info("پیام با موفقیت ارسال شد")
+        logging.info("پیام با موفقیت ارسال شد.")
     except Exception as e:
         logging.error(f"خطا در ارسال: {e}")
-    
-    await app.shutdown()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(send_promo_message())
