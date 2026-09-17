@@ -1,10 +1,8 @@
 name: Send Telegram Message
 
 on:
-  # این خط باعث می‌شود ورک‌فلو با دستور خارجی اجرا شود
   repository_dispatch:
     types: [trigger-event]
-  # این خط اجازه می‌دهد هنوز هم دستی تست کنی
   workflow_dispatch:
 
 jobs:
@@ -18,9 +16,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
-        run: pip install python-telegram-bot
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install python-telegram-bot faster-whisper
+          fi
 
       - name: Run bot
         env:
