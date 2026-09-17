@@ -3,7 +3,7 @@ import logging
 import os
 from telegram import Bot
 
-# تنظیمات لاگ
+# تنظیمات لاگ برای مشاهده بهتر در GitHub Actions
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     level=logging.INFO
@@ -20,23 +20,23 @@ __
 __
 """
 
-# دقت کنید: Chat ID باید عدد باشد (بدون کوتیشن اگر integer است)
+# Chat ID شما
 TARGET_CHAT_ID = -1002670424462
 
 async def send_promo_message():
-    # خواندن توکن از Secrets گیت‌هاب
-    TOKEN = os.environ.get("BOT_TOKEN")
+    # خواندن توکن از GitHub Secrets (بسیار مهم)
+    token = os.environ.get("BOT_TOKEN")
     
-    if not TOKEN:
-        logging.error("خطا: BOT_TOKEN یافت نشد! مطمئن شوید در GitHub Secrets تعریف شده است.")
+    if not token:
+        logging.error("خطا: BOT_TOKEN یافت نشد! حتماً در GitHub Secrets مقدار BOT_TOKEN را تنظیم کنید.")
         return
 
-    # ایجاد شیء Bot
-    bot = Bot(token=TOKEN)
+    # ایجاد شیء Bot با توکن خوانده شده از محیط
+    bot = Bot(token=token)
     
     try:
-        logging.info("در حال ارسال پیام...")
-        # استفاده از context manager یا اطمینان از بستن اتصال
+        logging.info("در حال ارسال پیام به چت آیدی: %s", TARGET_CHAT_ID)
+        # استفاده از context manager برای مدیریت صحیح اتصال
         async with bot:
             await bot.send_message(
                 chat_id=TARGET_CHAT_ID,
@@ -45,10 +45,12 @@ async def send_promo_message():
             )
         logging.info("پیام با موفقیت ارسال شد.")
     except Exception as e:
-        logging.error(f"خطا در ارسال: {e}")
+        logging.error(f"خطا در ارسال پیام: {e}")
 
 if __name__ == "__main__":
     try:
         asyncio.run(send_promo_message())
     except KeyboardInterrupt:
-        pass
+        logging.info("عملیات توسط کاربر متوقف شد.")
+    except Exception as e:
+        logging.error(f"خطای غیرمنتظره: {e}")
