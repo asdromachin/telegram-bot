@@ -20,6 +20,7 @@ __
 __
 """
 
+# دقت کنید: Chat ID باید عدد باشد (بدون کوتیشن اگر integer است)
 TARGET_CHAT_ID = -1002670424462
 
 async def send_promo_message():
@@ -27,21 +28,27 @@ async def send_promo_message():
     TOKEN = os.environ.get("BOT_TOKEN")
     
     if not TOKEN:
-        logging.error("خطا: BOT_TOKEN یافت نشد!")
+        logging.error("خطا: BOT_TOKEN یافت نشد! مطمئن شوید در GitHub Secrets تعریف شده است.")
         return
 
+    # ایجاد شیء Bot
     bot = Bot(token=TOKEN)
     
     try:
         logging.info("در حال ارسال پیام...")
-        await bot.send_message(
-            chat_id=TARGET_CHAT_ID,
-            text=MESSAGE,
-            disable_web_page_preview=True
-        )
+        # استفاده از context manager یا اطمینان از بستن اتصال
+        async with bot:
+            await bot.send_message(
+                chat_id=TARGET_CHAT_ID,
+                text=MESSAGE,
+                disable_web_page_preview=True
+            )
         logging.info("پیام با موفقیت ارسال شد.")
     except Exception as e:
         logging.error(f"خطا در ارسال: {e}")
 
 if __name__ == "__main__":
-    asyncio.run(send_promo_message())
+    try:
+        asyncio.run(send_promo_message())
+    except KeyboardInterrupt:
+        pass
