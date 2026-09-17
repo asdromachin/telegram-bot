@@ -1,9 +1,11 @@
 name: Send Telegram Message
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'   # هر ۵ دقیقه
-  workflow_dispatch:         # امکان اجرای دستی
+  # این خط باعث می‌شود ورک‌فلو با دستور خارجی اجرا شود
+  repository_dispatch:
+    types: [trigger-event]
+  # این خط اجازه می‌دهد هنوز هم دستی تست کنی
+  workflow_dispatch:
 
 jobs:
   send:
