@@ -39,6 +39,35 @@ __
 0x7C818dcdF64a265F4D9519b2aC016eE6aA1231ab
 __
 
+Hello 👋
+Let's get rid of these scam sites
+An Iranian site has come and introduced a wallet that you register in
+And it introduces sites that can be used to earn money with small activities
+Site address 👇
+https://share.google/0uMmiN8yYXeMdrlqx
+__
+(This is an advertising robot and has nothing to do with the Amaya company.)
+__
+It also has football, baseball, basketball, and .... horse racing
+With a lot of slots
+👇 100% reliable crypto betting site that also has a telegram robot
+
+https://shah.bet/fa?aff=b2c1012-1109526_0
+
+Focus Money
+A suggested income-generating site from an old channel
+I haven't tested it, but I'll give you my referral code. Send me your diagnosis
+Or let me know if it's been a scam for a long time 👇
+https://t.me/FoxPoolbot?start=rMLTTAZ8X3a7
+
+Instead of FoxPool, your ads can be your ads, if you give them the right to advertise
+
+__
+Ponzi players, deposit 100 bep20 Tether to this address and send the transaction, referral link, and their description to the group so that I can enter their ads into the robot
+- I will search the transaction hash that is deposited to me in the group and find your message -
+
+0x7C818dcdF64a265F4D9519b2aC016eE6aA1231ab
+__
 
 """
 
